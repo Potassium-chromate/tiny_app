@@ -7,7 +7,7 @@ function App() {
 
   const AddRow = () => {
     // Add a new row with default values (0, 0, 0, 0) for each player and editable state as false
-    setRows([...rows, { values: [0, 0, 0, 0], editable: false }]);
+    setRows([...rows, { values: [0, 0, 0, 0], editable: false, draftValues: [0, 0, 0, 0] }]);
   };
 
   const DeleteRow = (rowIndex) => {
@@ -17,9 +17,11 @@ function App() {
   };
 
   const HandleInputChange = (rowIndex, colIndex, value) => {
-    // Update a specific value in the 2D array
+    // Try to convert the value to a number
+    const numericValue = isNaN(Number(value)) ? 0 : Number(value); // Default to 0 if invalid input
+    // Update the draft value temporarily
     const newRows = [...rows];
-    newRows[rowIndex].values[colIndex] = value;
+    newRows[rowIndex].draftValues[colIndex] = numericValue;
     setRows(newRows);
   };
 
@@ -31,9 +33,16 @@ function App() {
   };
 
   const HandleRevise = (rowIndex) => {
-    // Toggle the editable state of the row
     const newRows = [...rows];
-    newRows[rowIndex].editable = !newRows[rowIndex].editable;
+    const row = newRows[rowIndex];
+
+    if (row.editable) {
+      // If "Confirm" is clicked, update the actual values with the draft values
+      row.values = [...row.draftValues];
+    }
+
+    // Toggle the editable state
+    row.editable = !row.editable;
     setRows(newRows);
   };
 
@@ -86,7 +95,7 @@ function NumberInputList({ rows, onInputChange, onDeleteRow, onRevise }) {
     <div>
       {rows.map((row, rowIndex) => (
         <div key={rowIndex} className="input-row">
-          {row.values.map((value, colIndex) => (
+          {row.draftValues.map((value, colIndex) => (
             <InputRect
               key={colIndex}
               value={value}
@@ -111,13 +120,12 @@ function NumberInputList({ rows, onInputChange, onDeleteRow, onRevise }) {
   );
 }
 
-
 function InputRect({ value, colIndex, rowIndex, onChange, editable }) {
   return (
     <input
       type="text"
       value={value}
-      onChange={(e) => onChange(rowIndex, colIndex, Number(e.target.value))}
+      onChange={(e) => onChange(rowIndex, colIndex, e.target.value)} // Store draft value
       disabled={!editable} // Disable the input if not editable
     />
   );
