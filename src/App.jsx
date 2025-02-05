@@ -6,8 +6,8 @@ function App() {
   const [playersname, setNames] = useState(["", "", "", ""]); // Store player names
 
   const AddRow = () => {
-    // Add a new row with default values (0, 0, 0, 0) for each player
-    setRows([...rows, [0, 0, 0, 0]]);
+    // Add a new row with default values (0, 0, 0, 0) for each player and editable state as false
+    setRows([...rows, { values: [0, 0, 0, 0], editable: false }]);
   };
 
   const DeleteRow = (rowIndex) => {
@@ -19,7 +19,7 @@ function App() {
   const HandleInputChange = (rowIndex, colIndex, value) => {
     // Update a specific value in the 2D array
     const newRows = [...rows];
-    newRows[rowIndex][colIndex] = value;
+    newRows[rowIndex].values[colIndex] = value;
     setRows(newRows);
   };
 
@@ -30,11 +30,18 @@ function App() {
     setNames(newNames);
   };
 
+  const HandleRevise = (rowIndex) => {
+    // Toggle the editable state of the row
+    const newRows = [...rows];
+    newRows[rowIndex].editable = !newRows[rowIndex].editable;
+    setRows(newRows);
+  };
+
   const CalculateSums = () => {
     // Calculate the sums for each player (column)
     const sums = [0, 0, 0, 0];
     rows.forEach((row) => {
-      row.forEach((value, colIndex) => {
+      row.values.forEach((value, colIndex) => {
         sums[colIndex] += value;
       });
     });
@@ -60,7 +67,12 @@ function App() {
           />
         ))}
       </div>
-      <NumberInputList rows={rows} onInputChange={HandleInputChange} onDeleteRow={DeleteRow} />
+      <NumberInputList
+        rows={rows}
+        onInputChange={HandleInputChange}
+        onDeleteRow={DeleteRow}
+        onRevise={HandleRevise}
+      />
       <h3>Totals</h3>
       {sums.map((sum, index) => (
         <p key={index}>{playersname[index] || `Player ${index + 1}`} : {sum}</p>
@@ -69,39 +81,46 @@ function App() {
   );
 }
 
-function NumberInputList({ rows, onInputChange, onDeleteRow }) {
+function NumberInputList({ rows, onInputChange, onDeleteRow, onRevise }) {
   return (
     <div>
       {rows.map((row, rowIndex) => (
         <div key={rowIndex} className="input-row">
-          {row.map((value, colIndex) => (
+          {row.values.map((value, colIndex) => (
             <InputRect
               key={colIndex}
               value={value}
               colIndex={colIndex}
               rowIndex={rowIndex}
               onChange={onInputChange}
+              editable={row.editable}
             />
           ))}
           <button onClick={() => onDeleteRow(rowIndex)}>Delete Row</button>
+          <button
+            onClick={() => onRevise(rowIndex)}
+            style={{
+              backgroundColor: row.editable ? "#ff0000" : "#007bff", // blue if editable, red otherwise
+            }}
+          >
+            {row.editable ? "Confirm" : "Revise"}
+          </button>
         </div>
       ))}
     </div>
   );
 }
 
-function InputRect({ value, colIndex, rowIndex, onChange }) {
+
+function InputRect({ value, colIndex, rowIndex, onChange, editable }) {
   return (
     <input
-      type="number"
+      type="text"
       value={value}
       onChange={(e) => onChange(rowIndex, colIndex, Number(e.target.value))}
+      disabled={!editable} // Disable the input if not editable
     />
   );
-}
-
-function TitleRect({ placeholder }) {
-  return <input type="text" placeholder={placeholder} readOnly />;
 }
 
 export default App;
