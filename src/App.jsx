@@ -60,14 +60,12 @@ function App() {
   const sums = CalculateSums();
 
   return (
-    <div>
-      <button onClick={AddRow}>Add Row</button>
-      <h2>Scoreboard</h2>
-
-      {/* Player name inputs */}
+    <div className="main_page">
       <div className="input-row">
+        <p>#</p>
         {playersname.map((name, index) => (
           <input
+            className="name_rect"
             key={index}
             type="text"
             value={name}
@@ -75,6 +73,7 @@ function App() {
             placeholder={`Player ${index + 1}`}
           />
         ))}
+        <button className="add_row" onClick={AddRow}>+</button>
       </div>
       <NumberInputList
         rows={rows}
@@ -82,10 +81,13 @@ function App() {
         onDeleteRow={DeleteRow}
         onRevise={HandleRevise}
       />
-      <h3>Totals</h3>
-      {sums.map((sum, index) => (
-        <p key={index}>{playersname[index] || `Player ${index + 1}`} : {sum}</p>
-      ))}
+      <div className="horizontal-line"></div>
+      <div className="input-row">
+        <p>SUM</p>
+        {sums.map((sum, index) => (
+          <p className="sum">{sum}</p>
+        ))}
+      </div>
     </div>
   );
 }
@@ -95,17 +97,18 @@ function NumberInputList({ rows, onInputChange, onDeleteRow, onRevise }) {
     <div>
       {rows.map((row, rowIndex) => (
         <div key={rowIndex} className="input-row">
+          <p>#{rowIndex + 1}</p>
           {row.draftValues.map((value, colIndex) => (
-            <InputRect
-              key={colIndex}
-              value={value}
-              colIndex={colIndex}
-              rowIndex={rowIndex}
-              onChange={onInputChange}
-              editable={row.editable}
-            />
+              <InputRect
+                key={colIndex}
+                value={value}
+                colIndex={colIndex}
+                rowIndex={rowIndex}
+                onChange={onInputChange}
+                editable={row.editable}
+              />
           ))}
-          <button onClick={() => onDeleteRow(rowIndex)}>Delete Row</button>
+          <button onClick={() => onDeleteRow(rowIndex)}>-</button>
           <button
             onClick={() => onRevise(rowIndex)}
             style={{
@@ -123,6 +126,7 @@ function NumberInputList({ rows, onInputChange, onDeleteRow, onRevise }) {
 function InputRect({ value, colIndex, rowIndex, onChange, editable }) {
   return (
     <input
+      className="input_rect"
       type="text"
       value={value}
       onChange={(e) => onChange(rowIndex, colIndex, e.target.value)} // Store draft value

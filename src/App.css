@@ -1,27 +1,92 @@
 button {
     margin: 5px;
-    padding: 8px 12px;
+    padding: 8px 15px;
     background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
+}
   
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  .input-row {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 5px;
-  }
-  
-  input[type="number"], input[type="text"] {
-    width: 50px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-  }
-  
+button:hover {
+  background-color: #0056b3;
+}
+
+.main_page{
+  background-color:#251d1c;
+}
+
+h2{
+  color: white;
+}
+
+p{
+  color: white;
+}
+
+.input-row {
+  display: grid;
+  grid-template-columns: 40px repeat(4, 70px) 30px 60px; 
+  gap: 5px;
+  align-items: center;
+}
+
+.input-row .name_rect{
+  width: 90%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  background-color: #443c3c;
+  border-radius: 3px;
+  color: white;
+  text-align: center;
+  justify-self: center;
+}
+
+.input-row p {
+  text-align: left;
+}
+
+.input-row .input_rect{
+  border: 1px solid #251d1c;
+  background-color: #251d1c;
+  border-radius: 3px;
+  color: white;
+  text-align: right;
+  width: 75%;
+  padding: 5px;
+  justify-self: center;
+}
+
+.input-row .input_rect:enabled {
+  background-color: #443c3c;
+}
+
+.input-row button {
+  width: 100%;
+  padding: 5px;
+  justify-self: start;
+}
+
+.input-row .add_row {
+  background-color: yellow;
+  color: black;
+  width: 100%;
+  padding: 5px;
+  justify-self: start;
+}
+
+.input-row .sum {
+  color: white;
+  width: 75%;
+  padding: 5px;
+  text-align: right;
+  justify-self: center;
+  font-size: 14px;
+}
+
+.horizontal-line {
+  width: 100%; /* Full width */
+  border-top: 2px solid #ae675c;
+  top: 50%; /* Position it vertically at the center (optional) */
+  left: 0;
+}
