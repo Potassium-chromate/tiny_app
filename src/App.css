@@ -1,7 +1,7 @@
 button {
     margin: 5px;
     padding: 8px 15px;
-    background-color: #007bff;
+    background-color: #01837c;
     color: white;
     border: none;
     border-radius: 5px;
@@ -9,9 +9,7 @@ button {
     text-align: center;
 }
   
-button:hover {
-  background-color: #0056b3;
-}
+
 
 .main_page{
   background-color:#251d1c;
@@ -82,7 +80,7 @@ body, html {
 }
 
 .input-row .add_row {
-  background-color: yellow;
+  background-color: #f5f2c4;
   color: black;
   width: 100%;
   padding: 5px;

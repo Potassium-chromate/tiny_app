@@ -108,14 +108,14 @@ function NumberInputList({ rows, onInputChange, onDeleteRow, onRevise }) {
                 editable={row.editable}
               />
           ))}
-          <button onClick={() => onDeleteRow(rowIndex)}>-</button>
+          <button onClick={() => onDeleteRow(rowIndex)}>🗑️</button>
           <button
             onClick={() => onRevise(rowIndex)}
             style={{
-              backgroundColor: row.editable ? "#ff0000" : "#007bff", // blue if editable, red otherwise
+              backgroundColor: row.editable ? "#ae675c" : "#b0e0e6", // blue if editable, red otherwise
             }}
           >
-            {row.editable ? "💾" : "🖊"}
+            {row.editable ? "💾" : "🖍️"}
           </button>
         </div>
       ))}
