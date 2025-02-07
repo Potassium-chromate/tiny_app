@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import "./Table.css";
 import CreateSum from "./Sum.jsx"
 import penIcon from "./images/pen.png";
@@ -6,7 +6,8 @@ import trashBinIcon from "./images/trash-bin.png";
 import saveIcon from "./images/save.256x256.png";
 
 function CreateTable() {
-	const [rows, setRows] = useState(() => {
+  // Initialize state with data from localStorage or default to empty array if not found
+  const [rows, setRows] = useState(() => {
     const storedRows = localStorage.getItem("rows");
     return storedRows ? JSON.parse(storedRows) : [];
   });
@@ -23,27 +24,22 @@ function CreateTable() {
   }, [rows, playersname]); // Only run when rows or playersname changes
 
   const AddRow = () => {
-    // Add a new row with default values (0, 0, 0, 0) for each player and editable state as false
     setRows([...rows, { values: [0, 0, 0, 0], editable: false, draftValues: [0, 0, 0, 0] }]);
   };
 
   const DeleteRow = (rowIndex) => {
-    // Remove the row at the specified index
     const newRows = rows.filter((_, index) => index !== rowIndex);
     setRows(newRows);
   };
 
   const HandleInputChange = (rowIndex, colIndex, value) => {
-    // Try to convert the value to a number
-    const numericValue = isNaN(Number(value)) ? 0 : Number(value); // Default to 0 if invalid input
-    // Update the draft value temporarily
+    const numericValue = isNaN(Number(value)) ? 0 : Number(value);
     const newRows = [...rows];
     newRows[rowIndex].draftValues[colIndex] = numericValue;
     setRows(newRows);
   };
 
   const HandleNameChange = (index, value) => {
-    // Update player names
     const newNames = [...playersname];
     newNames[index] = value;
     setNames(newNames);
@@ -54,16 +50,13 @@ function CreateTable() {
     const row = newRows[rowIndex];
 
     if (row.editable) {
-      // If "Confirm" is clicked, update the actual values with the draft values
       row.values = [...row.draftValues];
     }
-    // Toggle the editable state
     row.editable = !row.editable;
     setRows(newRows);
   };
 
-	const CalculateSums = () => {
-    // Calculate the sums for each player (column)
+  const CalculateSums = () => {
     const sums = [0, 0, 0, 0];
     rows.forEach((row) => {
       row.values.forEach((value, colIndex) => {
@@ -77,30 +70,30 @@ function CreateTable() {
 
   return (
     <>
-			<div className="table">
-				<div className="input-row">
-					<p>#</p>
-					{playersname.map((name, index) => (
-						<input
-							className="name_rect"
-							key={index}
-							type="text"
-							value={name}
-							onChange={(e) => HandleNameChange(index, e.target.value)}
-							placeholder={`Player ${index + 1}`}
-						/>
-					))}
-					<button className="add_row" onClick={AddRow}>+</button>
-				</div>
-				<NumberInputList
-					rows={rows}
-					onInputChange={HandleInputChange}
-					onDeleteRow={DeleteRow}
-					onRevise={HandleRevise}
-				/>
-			</div>
-			<CreateSum sums={sums}/>
-		</>
+      <div className="table">
+        <div className="input-row">
+          <p>#</p>
+          {playersname.map((name, index) => (
+            <input
+              className="name_rect"
+              key={index}
+              type="text"
+              value={name}
+              onChange={(e) => HandleNameChange(index, e.target.value)}
+              placeholder={`Player ${index + 1}`}
+            />
+          ))}
+          <button className="add_row" onClick={AddRow}>+</button>
+        </div>
+        <NumberInputList
+          rows={rows}
+          onInputChange={HandleInputChange}
+          onDeleteRow={DeleteRow}
+          onRevise={HandleRevise}
+        />
+      </div>
+      <CreateSum sums={sums} />
+    </>
   );
 }
 
