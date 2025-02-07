@@ -115,7 +115,7 @@ function NumberInputList({ rows, onInputChange, onDeleteRow, onRevise }) {
               backgroundColor: row.editable ? "#ff0000" : "#007bff", // blue if editable, red otherwise
             }}
           >
-            {row.editable ? "Confirm" : "Revise"}
+            {row.editable ? "💾" : "🖊"}
           </button>
         </div>
       ))}
