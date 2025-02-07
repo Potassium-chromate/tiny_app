@@ -6,8 +6,21 @@ import trashBinIcon from "./images/trash-bin.png";
 import saveIcon from "./images/save.256x256.png";
 
 function CreateTable() {
-	const [rows, setRows] = useState([]); // Array of rows, each containing input values for 4 players
-  const [playersname, setNames] = useState(["", "", "", ""]); // Store player names
+	const [rows, setRows] = useState(() => {
+    const storedRows = localStorage.getItem("rows");
+    return storedRows ? JSON.parse(storedRows) : [];
+  });
+
+  const [playersname, setNames] = useState(() => {
+    const storedNames = localStorage.getItem("playersname");
+    return storedNames ? JSON.parse(storedNames) : ["", "", "", ""];
+  });
+
+  useEffect(() => {
+    // Store rows and playersname to localStorage whenever they change
+    localStorage.setItem("rows", JSON.stringify(rows));
+    localStorage.setItem("playersname", JSON.stringify(playersname));
+  }, [rows, playersname]); // Only run when rows or playersname changes
 
   const AddRow = () => {
     // Add a new row with default values (0, 0, 0, 0) for each player and editable state as false
