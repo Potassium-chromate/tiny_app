@@ -1,6 +1,6 @@
 .sum_container {
     position: fixed;
-    bottom: 0px;
+    bottom: 0vh;
 	left: 0;
 }
 
@@ -23,7 +23,6 @@
 
 .input-row .sum {
     color: white;
-    
     font-weight: bold;
     text-align: center;
 }

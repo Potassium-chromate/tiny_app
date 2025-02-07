@@ -93,7 +93,7 @@ function CreateTable() {
 
 function NumberInputList({ rows, onInputChange, onDeleteRow, onRevise }) {
   return (
-    <div>
+    <div className="row_container">
       {rows.map((row, rowIndex) => (
         <div key={rowIndex} className="input-row">
           <p>#{rowIndex + 1}</p>
