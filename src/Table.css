@@ -1,0 +1,64 @@
+p {
+	color: white;
+	font-size: 12px;
+}
+
+.table{
+	position: absolute;
+	top: 10;
+	left: 10;
+}
+
+.input-row {
+  max-width: 100vw;
+  overflow-x: hidden;
+  display: grid;
+  grid-template-columns: 20px repeat(4, 55px) 30px 30px; 
+  gap: 5px;
+  align-items: center;
+}
+
+.input-row .name_rect{
+  width: 90%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  background-color: #443c3c;
+  border-radius: 3px;
+  color: white;
+  text-align: center;
+  justify-self: center;
+}
+
+.input-row p {
+  text-align: left;
+  font-size: 12px;
+}
+
+.input-row .input_rect{
+  border: 1px solid #251d1c;
+  background-color: #251d1c;
+  border-radius: 3px;
+  color: white;
+  text-align: right;
+  width: 75%;
+  padding: 5px;
+  justify-self: center;
+}
+
+.input-row .input_rect:enabled {
+  background-color: #443c3c;
+}
+
+.input-row button {
+  width: 100%;
+  padding: 5px;
+  justify-self: start;
+}
+
+.input-row .add_row {
+  background-color: #f5f2c4;
+  color: black;
+  width: 100%;
+  padding: 5px;
+  justify-self: start;
+}
