@@ -64,7 +64,7 @@ p {
 }
 
 .row_container{
-	max-height: 90vh;  /* Limit height to 60% of screen */
+	max-height: 80vh;  /* Limit height to 60% of screen */
   overflow-y: auto;  /* Enable vertical scrolling when needed */
   padding: 5px;  /* Optional: for spacing */
 }
