@@ -1,5 +1,9 @@
 import { useState } from "react";
 import "./App.css";
+import penIcon from "./images/pen.png";
+import trashBinIcon from "./images/trash-bin.png";
+import saveIcon from "./images/save.256x256.png";
+import addIcon from "./images/add-icon.png";
 
 function App() {
   const [rows, setRows] = useState([]); // Array of rows, each containing input values for 4 players
@@ -108,14 +112,18 @@ function NumberInputList({ rows, onInputChange, onDeleteRow, onRevise }) {
                 editable={row.editable}
               />
           ))}
-          <button onClick={() => onDeleteRow(rowIndex)}>🗑️</button>
+          <button onClick={() => onDeleteRow(rowIndex)}>
+            <img src={trashBinIcon} width="16" height="16" />
+          </button>
           <button
             onClick={() => onRevise(rowIndex)}
             style={{
               backgroundColor: row.editable ? "#ae675c" : "#b0e0e6", // blue if editable, red otherwise
             }}
           >
-            {row.editable ? "💾" : "🖍️"}
+            {row.editable ? 
+            <img src={saveIcon} width="16" height="16" /> : 
+            <img src={penIcon} width="16" height="16" />}
           </button>
         </div>
       ))}
