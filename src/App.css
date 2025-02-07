@@ -24,7 +24,19 @@ p{
   color: white;
 }
 
+body, html {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 .input-row {
+  max-width: 100vw;
+  overflow-x: hidden;
   display: grid;
   grid-template-columns: 40px repeat(4, 70px) 30px 60px; 
   gap: 5px;
