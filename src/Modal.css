@@ -15,7 +15,9 @@
 .modal_main {
     background-color: white;
     height: 25vh;
+    min-height: fit-content;
     width: 25vw; 
+    min-width: fit-content;
     border-radius: 10px;
     border: 2px solid #888; /* Add a subtle border */
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
