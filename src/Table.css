@@ -49,22 +49,53 @@ p {
   background-color: #443c3c;
 }
 
-.input-row button {
-  width: 100%;
-  padding: 5px;
-  justify-self: start;
-}
-
 .input-row .add_row {
   background-color: #f5f2c4;
   color: black;
-  width: 100%;
-  padding: 5px;
-  justify-self: start;
+  padding: 2px;
+  justify-self: center;
+  cursor: pointer;
+  border-radius: 3px;
+  height: 28px;
+  width: 28px;
+  border-color: transparent;
+}
+
+.input-row .delete {
+  background-color: #b0e0e6;
+}
+
+.input-row .save {
+  background-color: #ae675c;
+}
+
+.input-row .revise {
+  background-color: #b0e0e6;
 }
 
 .row_container{
-	max-height: 80vh;  /* Limit height to 60% of screen */
-  overflow-y: auto;  /* Enable vertical scrolling when needed */
-  padding: 5px;  /* Optional: for spacing */
+	max-height: 80vh;  
+  overflow-y: auto;  
+  padding: 5px; 
+}
+
+.row_container img{
+  padding: 2px;
+  justify-self: center;
+  cursor: pointer;
+  border-radius: 3px;
+  height: 28px;
+  width: auto;
+  border-color: transparent;
+}
+
+
+.clear{
+  justify-self: center;
+  background-color: red;
+  height: 28px;
+  width: auto;
+  padding:2px;
+  border-radius: 3px;
+  cursor: pointer;
 }

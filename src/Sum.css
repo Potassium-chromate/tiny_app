@@ -10,19 +10,17 @@
     margin-bottom: 5px; /* Add spacing between line and sum */
 }
 
-.input-row {
+.sum_container .input-row {
     max-width: 100vw;
     overflow-x: hidden;
     display: grid;
     grid-template-columns: 20px repeat(4, 55px) 30px 30px; 
     gap: 5px;
     align-items: center;
-    justify-content: center;
-    font-size: 16px;
 }
 
-.input-row .sum {
+.sum_container .input-row p{
     color: white;
-    font-weight: bold;
+    font-size: small;
     text-align: center;
 }

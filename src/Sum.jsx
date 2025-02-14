@@ -9,7 +9,7 @@ function CreateSum({sums}) {
 			<div className="input-row">
 				<p>SUM</p>
 				{sums.map((sum, index) =>(
-					<p className="sum">{sum}</p>
+					<p key={index}>{sum}</p>
 				))}
 			</div>
 		</div>

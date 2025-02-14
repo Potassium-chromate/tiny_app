@@ -1,11 +1,14 @@
 import React, { useState, useEffect} from "react";
 import "./Table.css";
+import CreateModal from "./Modal.jsx"
 import CreateSum from "./Sum.jsx"
 import penIcon from "./images/pen.png";
 import trashBinIcon from "./images/trash-bin.png";
 import saveIcon from "./images/save.256x256.png";
+import clearIcon from "./images/clear.png";
 
 function CreateTable() {
+  const [showModal, setShowModal] = useState(false);
   // Initialize state with data from localStorage or default to empty array if not found
   const [rows, setRows] = useState(() => {
     const storedRows = localStorage.getItem("rows");
@@ -70,6 +73,11 @@ function CreateTable() {
 
   return (
     <>
+      {showModal && (<CreateModal
+        setRows={setRows}
+        setNames={setNames}
+        setShowModal={setShowModal}
+      />)}
       <div className="table">
         <div className="input-row">
           <p>#</p>
@@ -84,6 +92,7 @@ function CreateTable() {
             />
           ))}
           <button className="add_row" onClick={AddRow}>+</button>
+          <img className="clear" src={clearIcon} onClick={() => setShowModal(true)}/>
         </div>
         <NumberInputList
           rows={rows}
@@ -113,19 +122,10 @@ function NumberInputList({ rows, onInputChange, onDeleteRow, onRevise }) {
                 editable={row.editable}
               />
           ))}
-          <button onClick={() => onDeleteRow(rowIndex)}>
-            <img src={trashBinIcon} width="16" height="16" />
-          </button>
-          <button
-            onClick={() => onRevise(rowIndex)}
-            style={{
-              backgroundColor: row.editable ? "#ae675c" : "#b0e0e6", // blue if editable, red otherwise
-            }}
-          >
-            {row.editable ? 
-            <img src={saveIcon} width="16" height="16" /> : 
-            <img src={penIcon} width="16" height="16" />}
-          </button>
+          <img className="delete" src={trashBinIcon} onClick={() => onDeleteRow(rowIndex)}/>
+          {row.editable ? 
+            <img className="save" src={saveIcon} onClick={() => onRevise(rowIndex)}/> : 
+            <img className="revise" src={penIcon} onClick={() => onRevise(rowIndex)}/>}
         </div>
       ))}
     </div>
