@@ -75,3 +75,15 @@ The `Sum.jsx` component is responsible for displaying the total scores for each 
 4. **Stateless Functional Component**:
 - Implemented as a **stateless functional component**, making it lightweight and focused solely on presenting data.
 - Relies entirely on the `sums` prop for rendering, promoting reusability and easy maintenance.
+
+## 🙏 Feedback & Future Improvements
+Thank you to everyone who has provided valuable feedback on **tiny_app**. Your insights have been essential in helping improve the user experience (UX) of this Mahjong scoreboard application. 🎉
+
+I am committed to continuously enhancing this project to make it more user-friendly, responsive, and feature-rich. If you have suggestions, spot any issues, or think of new features that could make the app better, **I would love to hear from you!** 💡
+
+📬 **Feel free to reach out**:
+- Open an [issue](https://github.com/Potassium-chromate/tiny_app/issues) on GitHub
+- Submit a pull request with improvements
+- Contact me directly at [home7438072@gmail.com]
+  
+Together, we can make tiny_app the perfect Mahjong score-tracking companion. 🀄✨
