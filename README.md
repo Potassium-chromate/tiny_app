@@ -1,4 +1,4 @@
-# 🎲 tiny_app – Mahjong Scoreboard
+# 🀄 tiny_app – Mahjong Scoreboard
 
 ## 📖 Intro
 **tiny_app** is a web application built with **React** that serves as a simple and intuitive **Mahjong score tracker**. It allows players to keep track of their scores throughout the game, ensuring a smooth and organized playing experience.
@@ -59,3 +59,19 @@ The `Modal.jsx` component is a confirmation modal designed to ensure that users 
 - The modal can be easily reused for other confirmation prompts by adjusting the props and messages.
 - Styled with `Modal.css` for a clean and focused user interface.
 
+## 📄 Introduction to `Sum.jsx` – Mahjong Scoreboard Sum Display Component
+The `Sum.jsx` component is responsible for displaying the total scores for each player in the Mahjong scoreboard application. It provides a clear and organized summary of accumulated scores across all game rounds, updating dynamically as players add or edit their scores.
+
+### 🚀 Key Functionalities:
+1. **Dynamic Score Summation**:
+- Receives the `sums` prop from the parent component (`Table.jsx`), representing the total score for each player.
+- Dynamically renders the updated sum values, reflecting real-time changes as new rounds are added or edited.
+2. **Responsive Score Display**:
+- Displays the **"SUM"** label followed by total scores for each player in a horizontal row.
+- Uses `map()` to efficiently iterate over the `sums` array, ensuring scalability for additional players if needed.
+3. **Styled Presentation**:
+- Styled with `Sum.css` to provide a clean and minimalistic summary section.
+- Includes a **horizontal line** for visual separation, enhancing readability and UI aesthetics.
+4. **Stateless Functional Component**:
+- Implemented as a **stateless functional component**, making it lightweight and focused solely on presenting data.
+- Relies entirely on the `sums` prop for rendering, promoting reusability and easy maintenance.
